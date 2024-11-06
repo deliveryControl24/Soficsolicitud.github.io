@@ -124,6 +124,13 @@
     <label for="submissionDate">Fecha de Envío de Solicitud:</label>
     <input type="date" id="submissionDate" required>
 
+    <label for="otherCredits">¿Trabaja créditos con alguna otra empresa?</label>
+    <select id="otherCredits" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+    </select>
+
     <button type="button" id="whatsappButton">Enviar Solicitud a WhatsApp</button>
 </form>
 
@@ -138,6 +145,7 @@
         const applicantAddress = document.getElementById('applicantAddress').value;
         const employmentStatus = document.getElementById('employmentStatus').value;
         const submissionDate = document.getElementById('submissionDate').value;
+        const otherCredits = document.getElementById('otherCredits').value;
 
         const message = `Nueva Solicitud de Préstamo:\n` +
                         `Cantidad a Solicitar: ${amount} Córdobas\n` +
@@ -146,7 +154,8 @@
                         `Número de Solicitante: ${applicantNumber}\n` +
                         `Dirección del Solicitante: ${applicantAddress}\n` +
                         `Estado Laboral: ${employmentStatus}\n` +
-                        `Fecha de Envío de Solicitud: ${submissionDate}`; 
+                        `Fecha de Envío de Solicitud: ${submissionDate}\n` +
+                        `¿Trabaja créditos con alguna otra empresa?: ${otherCredits}`; 
 
         const whatsappUrl = `https://wa.me/+50584527572?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
