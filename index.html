@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Préstamos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('IMG-20241105-WA0302.jpg'); /* Cambia la ruta si es necesario */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Color de texto oscuro */
+            height: 100vh; /* Altura completa de la pantalla */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: black; /* Color de texto negro */
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%; /* Adaptar al 90% del ancho de la pantalla */
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333; /* Color de texto oscuro */
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #6200ea;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                padding: 15px;
+                max-width: 90%; /* Asegúrate de que el formulario se ajuste en pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            form {
+                padding: 10px;
+                max-width: 95%; /* Asegúrate de que el formulario se ajuste en pantallas más pequeñas */
+            }
+
+            button {
+                padding: 8px; /* Ajusta el tamaño del botón en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Solicitud de Préstamo</h1>
+<form id="loanForm">
+    <label for="amount">Cantidad a Solicitar (Córdobas):</label>
+    <input type="number" id="amount" required>
+
+    <label for="applicantName">Nombre del Solicitante (cómo aparece en documento de identidad):</label>
+    <input type="text" id="applicantName">
+
+    <label for="idNumber">Número de Cédula (números solamente):</label>
+    <input type="text" id="idNumber" required pattern="\d{12}" title="Introduce 12 dígitos (ejemplo: 123456789012)">
+
+    <label for="applicantNumber">Número de Solicitante:</label>
+    <input type="text" id="applicantNumber" required>
+
+    <label for="applicantAddress">Dirección del Solicitante:</label>
+    <input type="text" id="applicantAddress" required>
+
+    <label for="employmentStatus">Estado Laboral:</label>
+    <select id="employmentStatus" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="comerciante">Comerciante</option>
+        <option value="asalariado">Asalariado</option>
+    </select>
+
+    <p>Después de enviar la solicitud, favor enviar foto del documento de identidad por ambos lados.</p>
+
+    <button type="button" id="whatsappButton">Enviar Solicitud a WhatsApp</button>
+</form>
+
+<script>
+    document.getElementById('whatsappButton').addEventListener('click', function() {
+        const amount = document.getElementById('amount').value;
+        const applicantName = document.getElementById('applicantName').value || "No especificado";
+        const idNumber = document.getElementById('idNumber').value;
+        const applicantNumber = document.getElementById('applicantNumber').value;
+        const applicantAddress = document.getElementById('applicantAddress').value;
+        const employmentStatus = document.getElementById('employmentStatus').value;
+
+        const message = `Nueva Solicitud de Préstamo:\n` +
+                        `Cantidad a Solicitar: ${amount} Córdobas\n` +
+                        `Nombre del Solicitante: ${applicantName}\n` +
+                        `Número de Cédula: ${idNumber}\n` +
+                        `Número de Solicitante: ${applicantNumber}\n` +
+                        `Dirección del Solicitante: ${applicantAddress}\n` +
+                        `Estado Laboral: ${employmentStatus}\n` +
+                        `Nota: Después de enviar la solicitud, favor enviar foto del documento de identidad por ambos lados.`; 
+
+        const whatsappUrl = `https://wa.me/+50584527572?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    });
+</script>
+
+</body>
+</html>
