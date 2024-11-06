@@ -109,10 +109,10 @@
         <option value="asalariado">Asalariado</option>
     </select>
 
-    <p>Después de enviar la solicitud, favor enviar foto del documento de identidad por ambos lados.</p>
-
     <button type="button" id="whatsappButton">Enviar Solicitud a WhatsApp</button>
 </form>
+
+<p>Después de enviar la solicitud, favor enviar foto del documento de identidad por ambos lados.</p>
 
 <script>
     document.getElementById('whatsappButton').addEventListener('click', function() {
@@ -129,8 +129,7 @@
                         `Número de Cédula: ${idNumber}\n` +
                         `Número de Solicitante: ${applicantNumber}\n` +
                         `Dirección del Solicitante: ${applicantAddress}\n` +
-                        `Estado Laboral: ${employmentStatus}\n` +
-                        `Nota: Después de enviar la solicitud, favor enviar foto del documento de identidad por ambos lados.`; 
+                        `Estado Laboral: ${employmentStatus}`; 
 
         const whatsappUrl = `https://wa.me/+50584527572?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
